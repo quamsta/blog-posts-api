@@ -16,10 +16,6 @@ BlogPostApi::Application.routes.draw do
   # (This requires editing the HOSTS file in dev environments)
 
   #namespace :api, path: '/', constraints:{ subdomain: 'api' } do
-  namespace :api, constraints:{ subdomain: 'api' } do
-    resources :posts
-    resources :categories
-  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
