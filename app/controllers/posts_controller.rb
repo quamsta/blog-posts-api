@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
 	def index
 		posts = Post.all
-
 		respond_to do |format|
 			format.json { render json: posts.to_json(:include => :categories), status: 200}
 		end
@@ -15,6 +14,15 @@ class PostsController < ApplicationController
 			# On production, we might use an empty response for performance reasons.
 			#head 204, location: post
 			render json: post, status: 201, location: post
+		else
+			render json: post.errors, status: 422
+		end
+	end
+
+	def update
+		post = Post.find(params[:id])
+		if post.update(post_params)
+			render json: post, status: 200
 		else
 			render json: post.errors, status: 422
 		end
