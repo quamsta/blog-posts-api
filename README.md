@@ -32,6 +32,24 @@ Tests:
  - `tests/integration/list_categories_as_json.rb`
 	 - returns categories as json
 
+Example Output
+		
+		[
+			{
+				id: 1,
+				title: "Hello, World.",
+				body: "Hey.",
+				categories: [
+					{
+						id: 1,
+						created_at: "2014-10-15T04:33:10.753Z",
+						updated_at: "2014-10-15T04:33:10.753Z",
+						title: "Fun stuff"
+					}
+				]
+			}
+		]
+
 Create
 ----
 HTTP Authorization token required: **supersuperserial**
@@ -73,3 +91,10 @@ Tests:
  - `tests/integration/update_categories_as_json_test.rb`
 	 -  successfully updates category from api using the correct token
 	 - unsuccessfully attempts to update category from api using FAKE token
+
+Other Tests
+-------
+
+ - `tests/integration/versioned_routes_test.rb`
+
+
