@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ListingPostsAsJsonTest < ActionDispatch::IntegrationTest
+class ListPostsAsJsonTest < ActionDispatch::IntegrationTest
 	test 'returns posts as json' do
 		get '/posts', :format => :json
 		assert_equal 200, response.status
