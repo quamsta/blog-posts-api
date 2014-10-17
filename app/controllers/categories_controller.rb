@@ -11,15 +11,26 @@ class CategoriesController < ApplicationController
 		category = Category.new(category_params)
 
 		if category.save
+			# On a production ajax call, we might use an empty response for
+			# performance reasons.
 			#head 204, location: category
 			render json: category, status: 201, location: category
 		end
 	end
 
-  private
+	def update
+		category = Category.find(params[:id])
+		if category.update(category_params)
+			render json: category, status: 200
+		else
+			render json: category.errors, status: 422
+		end
+	end
 
-  def category_params
-    params.require(:category).permit(:title)
-  end
+	private
+
+	def category_params
+		params.require(:category).permit(:title)
+	end
 
 end

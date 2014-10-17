@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+	# Since we're API only, we aren't dealing with sessions.
 	protect_from_forgery with: :null_session
 
 	def index
@@ -11,7 +12,8 @@ class PostsController < ApplicationController
 	def create
 		post = Post.create(post_params)
 		if post.save
-			# On production, we might use an empty response for performance reasons.
+			# On a production ajax call, we might use an empty response for
+			# performance reasons.
 			#head 204, location: post
 			render json: post, status: 201, location: post
 		else
