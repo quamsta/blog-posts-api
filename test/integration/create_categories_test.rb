@@ -5,7 +5,7 @@ class CreateCategoriesTest < ActionDispatch::IntegrationTest
 		post '/categories',
 		{ category:
 			{ title: 'Test'}
-		},
+		}.to_json,
 		{ 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
 		assert_equal 201, response.status

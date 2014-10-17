@@ -5,7 +5,7 @@ class CreatePostsTest < ActionDispatch::IntegrationTest
 		post '/posts',
 		{ post:
 			{ title: 'Test', body: 'TestPost' }
-		},
+		}.to_json,
 		{ 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
 
 		assert_equal 201, response.status
