@@ -1,18 +1,32 @@
 require 'test_helper'
 
 class CreatePostsTest < ActionDispatch::IntegrationTest
-	test "creates posts from api" do
+
+	test "successfully creates post from api using correct token" do
 		post '/posts',
 		{ post:
 			{ title: 'Test', body: 'TestPost' }
 		}.to_json,
-		{ 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s }
+		{ 'Authorization' => token_header(@correct_token), 
+			'Accept' => Mime::JSON,
+			 'Content-Type' => Mime::JSON.to_s }
 
 		assert_equal 201, response.status
 		assert_equal Mime::JSON, response.content_type
 
 		post = json(response.body)
 		assert_equal post_url(post[:id]), response.location
+	end
 
+	test "unsuccessfully attempts to create post from api using FAKE token" do
+		post '/posts',
+		{ post:
+			{ title: 'Test', body: 'TestPost' }
+		}.to_json,
+		{ 'Authorization' => token_header(@fake_token), 
+			'Accept' => Mime::JSON,
+			 'Content-Type' => Mime::JSON.to_s }
+
+		assert_equal 401, response.status
 	end
 end

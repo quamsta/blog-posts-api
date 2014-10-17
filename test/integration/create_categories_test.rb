@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CreateCategoriesTest < ActionDispatch::IntegrationTest
-	test "creates categories from api" do
+	test "successfully creates categories from api with correct token" do
 		post '/categories',
 		{ category:
 			{ title: 'Test'}

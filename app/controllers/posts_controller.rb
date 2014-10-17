@@ -2,6 +2,10 @@ class PostsController < ApplicationController
 	# Since we're API only, we aren't dealing with sessions.
 	protect_from_forgery with: :null_session
 
+	API_TOKEN = "supersuperserial"
+
+	before_action :authenticate, only: [ :update, :destroy, :edit ]
+
 	def index
 		posts = Post.all
 		respond_to do |format|
@@ -9,6 +13,9 @@ class PostsController < ApplicationController
 		end
 	end
 
+	#def render_failed_authentication
+	#
+	#end
 	def create
 		post = Post.create(post_params)
 		if post.save
@@ -34,6 +41,14 @@ class PostsController < ApplicationController
 
 	def post_params
 		params.require(:post).permit(:title, :body )
+	end
+
+	private
+
+	def authenticate
+		authenticate_or_request_with_http_token do |token, options|
+			token == API_TOKEN
+		end
 	end
 
 end

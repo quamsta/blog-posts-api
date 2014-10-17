@@ -6,7 +6,9 @@ class UpdatePostsTest < ActionDispatch::IntegrationTest
   test 'succesfully updated post from api' do
   	patch "/posts/#{@post.id}",
   		{post: {title: 'Test Title Edit'}}.to_json,
-  		{'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s}
+  		{'Authorization' => token_header(@correct_token),
+  			'Accept' => Mime::JSON, 
+  			'Content-Type' => Mime::JSON.to_s}
 
   	reloaded_post = @post.reload
 
