@@ -2,10 +2,6 @@ class PostsController < ApplicationController
 	# Since we're API only, we aren't dealing with sessions.
 	protect_from_forgery with: :null_session
 
-	
-
-	
-
 	def index
 		posts = Post.all
 		respond_to do |format|

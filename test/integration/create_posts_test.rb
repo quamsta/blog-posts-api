@@ -7,10 +7,9 @@ class CreatePostsTest < ActionDispatch::IntegrationTest
 		{ post:
 			{ title: 'Test', body: 'TestPost' }
 		}.to_json,
-		{ 'Authorization' => token_header(@correct_token), 
+		{ 'Authorization' => token_header(CORRECT_TOKEN), 
 			'Accept' => Mime::JSON,
 			 'Content-Type' => Mime::JSON.to_s }
-
 		assert_equal 201, response.status
 		assert_equal Mime::JSON, response.content_type
 
@@ -23,7 +22,7 @@ class CreatePostsTest < ActionDispatch::IntegrationTest
 		{ post:
 			{ title: 'Test', body: 'TestPost' }
 		}.to_json,
-		{ 'Authorization' => token_header(@fake_token), 
+		{ 'Authorization' => token_header(FAKE_TOKEN), 
 			'Accept' => Mime::JSON,
 			 'Content-Type' => Mime::JSON.to_s }
 
