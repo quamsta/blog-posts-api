@@ -6,7 +6,7 @@ module V2
 		def index
 			posts = Post.all
 			respond_to do |format|
-				format.json { render json: posts.to_json(:include => :categories), status: 200}
+				format.json { render json: posts, status: 200}
 			end
 		end
 
