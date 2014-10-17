@@ -32,7 +32,7 @@ Tests:
  - `tests/integration/list_categories_as_json.rb`
 	 - returns categories as json
 
-Example Output
+Example Output:
 		
 		[
 			{
@@ -83,6 +83,9 @@ POST Via application/json:
 
     http://localhost:3000/v2/posts
     http://localhost:3000/v2/categories
+  
+----------
+  
 Tests:
 
  - `tests/integration/update_posts_test.rb`
