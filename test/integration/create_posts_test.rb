@@ -2,8 +2,8 @@ require 'test_helper'
 
 class CreatePostsTest < ActionDispatch::IntegrationTest
 
-	test "successfully creates post from api using correct token" do
-		post '/posts',
+	test "successfully creates post from api using the correct token" do
+		post '/v2/posts',
 		{ post:
 			{ title: 'Test', body: 'TestPost' }
 		}.to_json,
@@ -18,7 +18,7 @@ class CreatePostsTest < ActionDispatch::IntegrationTest
 	end
 
 	test "unsuccessfully attempts to create post from api using FAKE token" do
-		post '/posts',
+		post '/v2/posts',
 		{ post:
 			{ title: 'Test', body: 'TestPost' }
 		}.to_json,

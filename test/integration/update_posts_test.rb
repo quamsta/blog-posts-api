@@ -4,7 +4,7 @@ class UpdatePostsTest < ActionDispatch::IntegrationTest
 	setup { @post = Post.create!(title: 'Test Title', body: 'Test Body')}
 
 	test 'succesfully updated post from api with correct token' do
-		patch "/posts/#{@post.id}",
+		patch "/v2/posts/#{@post.id}",
 		{post: {title: 'Test Title Edit'}}.to_json,
 		{'Authorization' => token_header(CORRECT_TOKEN),
 			'Accept' => Mime::JSON,
@@ -18,7 +18,7 @@ class UpdatePostsTest < ActionDispatch::IntegrationTest
 	end
 
 	test 'unsuccesfully updated post from api with incorrect token' do
-		patch "/posts/#{@post.id}",
+		patch "/v2/posts/#{@post.id}",
 		{post: {title: 'Test Title Edit'}}.to_json,
 		{'Authorization' => token_header(FAKE_TOKEN),
 			'Accept' => Mime::JSON,

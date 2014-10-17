@@ -6,7 +6,7 @@ module V2
 		def index
 			posts = Post.all
 			respond_to do |format|
-				format.json { render json: posts, status: 200}
+				format.json { render json: posts, root: false, status: 200}
 			end
 		end
 
@@ -19,7 +19,7 @@ module V2
 				# On a production ajax call, we might use an empty response for
 				# performance reasons.
 				#head 204, location: post
-				render json: post, status: 201, location: post
+				render json: post, root: false, status: 201, location: post
 			else
 				render json: post.errors, status: 422
 			end

@@ -4,7 +4,7 @@ class UpdateCategoriesTest < ActionDispatch::IntegrationTest
   setup { @category = Category.create!(title: 'Test Title')}
 
   test 'succesfully updated category from api with the correct token' do
-  	patch "/categories/#{@category.id}",
+  	patch "/v2/categories/#{@category.id}",
   		{category: {title: 'Test Title Edit'}}.to_json,
   		{'Authorization' => token_header(CORRECT_TOKEN), 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s}
 
@@ -15,7 +15,7 @@ class UpdateCategoriesTest < ActionDispatch::IntegrationTest
 
   end
    test 'unsuccesfully updated category from api with a fake token' do
-  	patch "/categories/#{@category.id}",
+  	patch "/v2/categories/#{@category.id}",
   		{category: {title: 'Test Title Edit'}}.to_json,
   		{'Authorization' => token_header(FAKE_TOKEN), 'Accept' => Mime::JSON, 'Content-Type' => Mime::JSON.to_s}
 

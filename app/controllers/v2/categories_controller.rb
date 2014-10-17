@@ -5,7 +5,7 @@ module V2
 		def index
 			categories = Category.all
 			respond_to do |format|
-				format.json { render json: categories.to_json(:include => :posts)}
+				format.json { render json: categories, root: false}
 			end
 		end
 
@@ -16,14 +16,14 @@ module V2
 				# On a production ajax call, we might use an empty response for
 				# performance reasons.
 				#head 204, location: category
-				render json: category, status: 201, location: category
+				render json: category, root: false, status: 201, location: category
 			end
 		end
 
 		def update
 			category = Category.find(params[:id])
 			if category.update(category_params)
-				render json: category, status: 200
+				render json: category, root: false, status: 200
 			else
 				render json: category.errors, status: 422
 			end
